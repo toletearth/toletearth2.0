@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}{% if listing %}{{ listing.title }}, {{ listing.sector }} — TOLET Earth{% else %}Listing not found — TOLET Earth{% endif %}{% endblock %}
+{% block content %}
+
+{% if listing %}
+<div class="page-head wrap">
+  <div class="eyebrow" style="margin-bottom:14px;">{{ listing.sector.upper() }} · {{ listing.city.upper() }}</div>
+  <h1>{{ listing.title }}</h1>
+</div>
+
+<div class="wrap detail-grid">
+  <div>
+    <div class="detail-photo">
+      <img src="{{ url_for('static', filename='images/' + listing.image) }}" alt="{{ listing.title }} in {{ listing.sector }}, {{ listing.city }}">
+    </div>
+    <p>{{ listing.description }}</p>
+    <div class="detail-meta">
+      <span>{{ listing.bhk }} BHK</span>
+      <span>{{ listing.sqft }} sq.ft</span>
+      <span>{{ listing.furnishing }}</span>
+      <span>{{ listing.property_type }}</span>
+    </div>
+
+    {% if similar %}
+    <h2 style="font-size:22px; margin-bottom:20px;">Similar in {{ listing.city }}</h2>
+    <div class="listings">
+      {% for p in similar %}
+      <article class="listing">
+        <div class="photo">
+          <img src="{{ url_for('static', filename='images/' + p.image) }}" alt="{{ p.title }} in {{ p.sector }}, {{ p.city }}">
+        </div>
+        <div class="body">
+          <div class="price">₹{{ "{:,}".format(p.price) }} <span>/ month</span></div>
+          <div class="title">{{ p.title }}</div>
+          <div class="sector">{{ p.sector.upper() }}</div>
+          <a href="{{ url_for('properties.details', property_id=p.id) }}" class="view">View Details</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <aside class="owner-card">
+    <div class="price">₹{{ "{:,}".format(listing.price) }} <span class="mono" style="font-size:13px; color:var(--ink-soft);">/ month</span></div>
+    <div class="mono" style="font-size:12px; color:var(--ink-soft);">No brokerage on this listing</div>
+    <h3>Owner</h3>
+    <div>{{ listing.owner_name }}</div>
+    <div class="phone">{{ listing.owner_phone }}</div>
+    <a href="tel:{{ listing.owner_phone }}" class="btn btn-solid" style="width:100%; justify-content:center; margin-bottom:10px;">Call Owner</a>
+    <a href="{{ url_for('main.contact') }}" class="btn btn-ghost" style="width:100%; justify-content:center;">Message Instead</a>
+  </aside>
+</div>
+
+{% else %}
+<div class="section wrap">
+  <div class="empty-state">
+    <p>We couldn't find that listing. It may have been rented out or removed.</p>
+    <br>
+    <a href="{{ url_for('properties.browse') }}" class="btn btn-solid">Browse all properties</a>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

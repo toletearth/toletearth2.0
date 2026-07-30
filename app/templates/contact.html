@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Contact — TOLET Earth{% endblock %}
+{% block content %}
+
+<div class="page-head wrap">
+  <h1>Get in touch</h1>
+  <p>Questions, feedback, or help with a listing — send us a note.</p>
+</div>
+
+<div class="section wrap">
+  <div class="form-card">
+    {% if submitted %}
+    <div class="form-note">Thanks — your message has been sent. We'll get back to you shortly.</div>
+    {% endif %}
+    <form method="post">
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-solid">Send Message</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

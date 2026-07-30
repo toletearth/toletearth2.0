@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %}TOLET Earth — Rent Freely, Live Peacefully{% endblock %}
+{% block content %}
+
+<section class="hero grid-field">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">TRICITY RENTALS · NO BROKERAGE</div>
+      <h1>Find your next home
+        <span class="cities">in Chandigarh, Mohali &amp; Panchkula</span>
+      </h1>
+      <p class="lede">No brokerage. No hidden fees. Search verified listings and talk to the owner directly — nothing in between.</p>
+      <div class="hero-ctas">
+        <a href="{{ url_for('properties') }}" class="btn btn-solid">Browse Listings</a>
+        <a href="{{ url_for('list_property') }}" class="btn btn-ghost">List Your Property</a>
+      </div>
+      <div class="badges">
+        <div class="b"><b>0%</b> brokerage</div>
+        <div class="b"><b>{{ stats.listed }}+</b> verified listings</div>
+        <div class="b"><b>3</b> cities covered</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo">
+        <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="A furnished living room in a tricity apartment available to rent">
+      </div>
+      <div class="coord-tag">SEC 35-A · CHANDIGARH</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <form class="search-strip" action="{{ url_for('properties') }}" method="get">
+      <div class="field">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter sector or city">
+      </div>
+      <div class="field">
+        <label for="property_type">Property Type</label>
+        <select id="property_type" name="property_type">
+          <option value="">Any</option>
+          <option>Flat</option>
+          <option>Builder Floor</option>
+          <option>Independent House</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="bhk">BHK</label>
+        <select id="bhk" name="bhk">
+          <option value="">Any</option>
+          <option value="1">1 BHK</option>
+          <option value="2">2 BHK</option>
+          <option value="3">3 BHK</option>
+          <option value="4">4+ BHK</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="budget">Budget</label>
+        <select id="budget" name="budget">
+          <option value="">Any Budget</option>
+          <option value="under-15000">Under ₹15,000</option>
+          <option value="15000-25000">₹15,000–25,000</option>
+          <option value="25000-plus">₹25,000+</option>
+        </select>
+      </div>
+      <button class="go" type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="stats wrap">
+  <div class="stats-row">
+    <div class="stat"><div class="num">{{ stats.listed }}+</div><div class="label">PROPERTIES LISTED</div></div>
+    <div class="stat"><div class="num">{{ stats.users }}+</div><div class="label">HAPPY USERS</div></div>
+    <div class="stat"><div class="num">₹{{ stats.saved }}+</div><div class="label">BROKERAGE SAVED</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">DIRECT &amp; TRANSPARENT</div></div>
+  </div>
+</section>
+
+<section class="section wrap" id="listings">
+  <div class="section-head">
+    <div>
+      <h2>Featured properties</h2>
+      <div class="sub">Handpicked homes across the tricity, updated weekly.</div>
+    </div>
+    <a href="{{ url_for('properties') }}" class="btn btn-ghost">View All Properties →</a>
+  </div>
+
+  <div class="listings">
+    {% for p in featured %}
+    <article class="listing">
+      <div class="photo">
+        {% if p.tag %}<span class="tag {{ 'new' if p.tag == 'New' }}">{{ p.tag }}</span>{% endif %}
+        <img src="{{ url_for('static', filename='images/properties/' + p.image) }}" alt="{{ p.title }} in {{ p.sector }}, {{ p.city }}">
+      </div>
+      <div class="body">
+        <div class="price">₹{{ "{:,}".format(p.price) }} <span>/ month</span></div>
+        <div class="title">{{ p.title }}</div>
+        <div class="sector">{{ p.sector.upper() }} · {{ p.city.upper() }}</div>
+        <div class="meta"><span>{{ p.bhk }} BHK</span><span>{{ p.sqft }} SQ.FT</span><span>{{ p.furnishing }}</span></div>
+        <a href="{{ url_for('property_details', property_id=p.id) }}" class="view">View Details</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="split">
+    <div>
+      <div class="section-head" style="margin-bottom:8px;"><h2>Why choose TOLET Earth</h2></div>
+      <div class="reasons">
+        <div class="reason"><div class="n">01</div><div><h3>Save money</h3><p>No brokerage means more of your budget goes toward the home, not the middleman.</p></div></div>
+        <div class="reason"><div class="n">02</div><div><h3>Direct contact</h3><p>Message or call the owner yourself — no relayed answers, no delays.</p></div></div>
+        <div class="reason"><div class="n">03</div><div><h3>Verified listings</h3><p>Every property is checked before it goes live, so what you see is what's there.</p></div></div>
+        <div class="reason"><div class="n">04</div><div><h3>Built for the tricity</h3><p>Sector-level search across Chandigarh, Mohali and Panchkula — made for how locals actually look.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:8px;"><h2>How it works</h2></div>
+      <div class="steps">
+        <div class="step"><div class="marker">1</div><div><h3>Search</h3><p>Filter by sector, budget, BHK and property type.</p></div></div>
+        <div class="step"><div class="marker">2</div><div><h3>Connect</h3><p>Message the owner directly and ask what you need to know.</p></div></div>
+        <div class="step"><div class="marker">3</div><div><h3>Move in</h3><p>Agree the terms between yourselves and finalise. That's it.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Have a property to rent out?</h2>
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="{{ url_for('list_property') }}" class="btn btn-solid">List Your Property</a>
+      <a href="{{ url_for('properties') }}" class="btn btn-ghost">Browse Listings</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}TOLET Earth — Rent Freely, Live Peacefully{% endblock %}</title>
+<meta name="description" content="TOLET Earth — free, broker-free rental platform in Chandigarh, Mohali and Panchkula. Verified listings, direct owner contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="{{ url_for('index') }}">
+      <img class="mark" src="{{ url_for('static', filename='images/logo.png') }}" alt="TOLET Earth logo">
+      <div>
+        <span class="name">TOLET <em>Earth</em></span>
+        <span class="tag">RENT FREELY · CONNECT DIRECTLY · NO BROKERS</span>
+      </div>
+    </a>
+    <nav class="links">
+      <a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' }}">Home</a>
+      <a href="{{ url_for('properties') }}" class="{{ 'active' if request.endpoint == 'properties' }}">Browse Properties</a>
+      <a href="{{ url_for('list_property') }}" class="{{ 'active' if request.endpoint == 'list_property' }}">Post Property</a>
+      <a href="{{ url_for('about') }}" class="{{ 'active' if request.endpoint == 'about' }}">About Us</a>
+      <a href="{{ url_for('faq') }}" class="{{ 'active' if request.endpoint == 'faq' }}">FAQ</a>
+      <a href="{{ url_for('contact') }}" class="{{ 'active' if request.endpoint == 'contact' }}">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <a href="{{ url_for('list_property') }}" class="btn btn-solid">+ Post Property</a>
+  </div>
+</header>
+
+{% block content %}{% endblock %}
+
+<footer>
+  <div class="wrap">
+    <div class="fine">© 2025 TOLET Earth. Rent freely, live peacefully.</div>
+    <div class="fine">CHANDIGARH · MOHALI · PANCHKULA</div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

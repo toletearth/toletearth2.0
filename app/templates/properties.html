@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Browse Properties — TOLET Earth{% endblock %}
+{% block content %}
+
+<div class="page-head wrap">
+  <h1>Browse properties</h1>
+  <p>{{ listings|length }} verified listing{{ 's' if listings|length != 1 }} across Chandigarh, Mohali and Panchkula.</p>
+</div>
+
+<div class="section wrap">
+  <form class="filter-bar" method="get">
+    <div>
+      <label for="location">Location</label>
+      <input type="text" id="location" name="location" placeholder="Sector or city" value="{{ filters.location }}">
+    </div>
+    <div>
+      <label for="property_type">Property Type</label>
+      <select id="property_type" name="property_type">
+        <option value="" {{ 'selected' if not filters.property_type }}>Any</option>
+        {% for t in ["Flat", "Builder Floor", "Independent House"] %}
+        <option value="{{ t }}" {{ 'selected' if filters.property_type == t }}>{{ t }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="bhk">BHK</label>
+      <select id="bhk" name="bhk">
+        <option value="" {{ 'selected' if not filters.bhk }}>Any</option>
+        {% for n in [1,2,3,4] %}
+        <option value="{{ n }}" {{ 'selected' if filters.bhk == n|string }}>{{ n }}{{ '+' if n == 4 }} BHK</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="budget">Budget</label>
+      <select id="budget" name="budget">
+        <option value="" {{ 'selected' if not filters.budget }}>Any Budget</option>
+        <option value="under-15000" {{ 'selected' if filters.budget == 'under-15000' }}>Under ₹15,000</option>
+        <option value="15000-25000" {{ 'selected' if filters.budget == '15000-25000' }}>₹15,000–25,000</option>
+        <option value="25000-plus" {{ 'selected' if filters.budget == '25000-plus' }}>₹25,000+</option>
+      </select>
+    </div>
+    <button class="go" type="submit">Filter</button>
+  </form>
+
+  {% if listings %}
+  <div class="listings">
+    {% for p in listings %}
+    <article class="listing">
+      <div class="photo">
+        {% if p.tag %}<span class="tag {{ 'new' if p.tag == 'New' }}">{{ p.tag }}</span>{% endif %}
+        <img src="{{ url_for('static', filename='images/' + p.image) }}" alt="{{ p.title }} in {{ p.sector }}, {{ p.city }}">
+      </div>
+      <div class="body">
+        <div class="price">₹{{ "{:,}".format(p.price) }} <span>/ month</span></div>
+        <div class="title">{{ p.title }}</div>
+        <div class="sector">{{ p.sector.upper() }} · {{ p.city.upper() }}</div>
+        <div class="meta"><span>{{ p.bhk }} BHK</span><span>{{ p.sqft }} SQ.FT</span><span>{{ p.furnishing }}</span></div>
+        <a href="{{ url_for('properties.details', property_id=p.id) }}" class="view">View Details</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <p>No listings match those filters yet. Try widening your search, or check back soon — new homes are added weekly.</p>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

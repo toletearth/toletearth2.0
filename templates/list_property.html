@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}List Your Property — TOLET Earth{% endblock %}
+{% block content %}
+
+<div class="page-head wrap">
+  <h1>List your property</h1>
+  <p>Free to post. No brokerage, no commission — you deal with renters directly.</p>
+</div>
+
+<div class="section wrap">
+  <div class="form-card">
+    {% if submitted %}
+    <div class="form-note">Thanks — we've received your listing. It'll go live after a quick review.</div>
+    {% endif %}
+    <form method="post">
+      <div class="form-field">
+        <label for="title">Property Title</label>
+        <input type="text" id="title" name="title" placeholder="e.g. 2 BHK Flat" required>
+      </div>
+      <div class="form-field">
+        <label for="sector">Sector / Area</label>
+        <input type="text" id="sector" name="sector" placeholder="e.g. Sector 70" required>
+      </div>
+      <div class="form-field">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" placeholder="Chandigarh, Mohali or Panchkula" required>
+      </div>
+      <div class="form-field">
+        <label for="price">Monthly Rent (₹)</label>
+        <input type="number" id="price" name="price" required>
+      </div>
+      <div class="form-field">
+        <label for="phone">Your Phone Number</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5" placeholder="Tell renters about the property"></textarea>
+      </div>
+      <button type="submit" class="btn btn-solid">Submit Listing</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

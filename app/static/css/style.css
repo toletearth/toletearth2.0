@@ -1,0 +1,363 @@
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f7f9fc;
+}
+
+.navbar{
+    padding:15px 0;
+}
+
+.nav-link{
+    font-weight:500;
+}
+
+.btn-primary{
+    border-radius:10px;
+    padding:10px 20px;
+}
+
+/* Hero Section */
+
+.hero{
+
+    background-image:
+    linear-gradient(rgba(0,0,0,.55),
+    rgba(0,0,0,.55)),
+    url("../images/hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    min-height:80vh;
+
+    display:flex;
+    align-items:center;
+
+}
+
+.overlay{
+    width:100%;
+}
+
+.hero-content{
+
+    color:white;
+
+    max-width:650px;
+
+}
+
+.hero-content h1{
+
+    font-size:60px;
+
+    font-weight:700;
+
+}
+
+.hero-content h2{
+
+    margin-top:20px;
+
+    color:#90EE90;
+
+    font-weight:600;
+
+}
+
+.hero-content p{
+
+    font-size:22px;
+
+    margin-top:20px;
+
+}
+
+@media(max-width:768px){
+
+.hero{
+
+min-height:70vh;
+
+text-align:center;
+
+}
+
+.hero-content h1{
+
+font-size:40px;
+
+}
+
+.hero-content h2{
+
+font-size:26px;
+
+}
+
+.hero-content p{
+
+font-size:18px;
+
+}
+
+}
+
+/* Search Box */
+
+.search-box{
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-top: 30px;
+}
+
+.search-box .form-control,
+.search-box .form-select{
+    height: 50px;
+    border-radius: 10px;
+}
+
+.search-box .btn{
+    height: 50px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Stats Section */
+
+.stats-section{
+    background:#ffffff;
+}
+
+.stats-section h2{
+    font-weight:700;
+    color:#0D47A1;
+}
+
+.stats-section p{
+    color:#666;
+    font-size:18px;
+}
+
+.stats-section i{
+    transition:.3s;
+}
+
+.stats-section .col-md-3:hover i{
+    transform:scale(1.2);
+}
+
+/* Featured Properties */
+
+.featured-properties{
+    background:#f8f9fa;
+}
+
+.property-card{
+    border:none;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.property-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.property-card img{
+    height:220px;
+    object-fit:cover;
+}
+
+.property-card h4{
+    font-weight:700;
+}
+
+.property-card .btn{
+    border-radius:10px;
+}
+
+/* Why Choose ToletEarth */
+
+.why-us{
+    background:#ffffff;
+}
+
+.feature-box{
+    background:#fff;
+    padding:30px;
+    text-align:center;
+    border-radius:15px;
+    transition:.3s;
+    height:100%;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.feature-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.feature-icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    margin-bottom:20px;
+    border-radius:50%;
+    background:#eaf2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.feature-icon i{
+    font-size:36px;
+    color:#0D47A1;
+}
+
+.feature-box h4{
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.feature-box p{
+    color:#666;
+}
+
+/* How It Works */
+
+.how-it-works{
+    background:#f8f9fa;
+}
+
+.step-card{
+    background:#fff;
+    border-radius:15px;
+    padding:35px 25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:0.3s;
+    position:relative;
+    height:100%;
+}
+
+.step-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.step-number{
+    width:45px;
+    height:45px;
+    background:#0D47A1;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    position:absolute;
+    top:-20px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.step-card h4{
+    font-weight:600;
+    margin-top:20px;
+}
+
+.step-card p{
+    color:#666;
+}
+
+/* Owner CTA */
+
+.owner-cta{
+    background:linear-gradient(135deg,#0D47A1,#1565C0);
+    border-radius:20px;
+    margin:70px auto;
+    width:90%;
+}
+
+.owner-cta h2{
+    font-size:40px;
+}
+
+.owner-cta h3{
+    font-weight:600;
+}
+
+.owner-cta .btn{
+    border-radius:12px;
+    padding:15px 30px;
+    font-weight:600;
+}
+
+/* Testimonials */
+
+.testimonials{
+    background:#f8f9fa;
+}
+
+.testimonial-card{
+
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    height:100%;
+    transition:.3s;
+
+}
+
+.testimonial-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stars{
+
+    color:#FFC107;
+    font-size:28px;
+    margin-bottom:20px;
+
+}
+
+.testimonial-card p{
+
+    font-style:italic;
+    color:#555;
+
+}
+
+.testimonial-card h5{
+
+    margin-top:20px;
+    font-weight:600;
+
+}
+
+/* Footer */
+
+.footer{
+    background:#0D47A1;
+    color:white;
+}
+
+.footer a{
+    color:#ddd;
+    text-decoration:none;
+}
+
+.footer a:hover{
+    color:white;
+}
+
+.social-icon{
+    font-size:24px;
+    margin-right:15px;
+}
