@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables / secrets
+.env
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Flask
+instance/*.db-journal
